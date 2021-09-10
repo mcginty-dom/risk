@@ -1,0 +1,12 @@
+After 28 days of inactivity, upon next startup the program deletes the save files and account of an inactive account
+in order to limit total file size to a minimum and to allow new accounts to be created.
+Each player is limited to 3 save files.
+Make the skill tree similar to patents in offworld trading company, they can patent an idea so that only they can
+use it? can only have 1 active?
+OR
+As its single player, the skill tree can be only for the actual player rather than AI, this makes it so you could
+have something like SkillTree['ID']:=SkillTree['ID']+1 as they climb up the 'tree'. This also means that the
+player will always win the game from unlimited time so a time limit needs to be in place as well as AI to be
+stronger than the player in the beginning.
+
+When TileX#Y# is pressed, display info in GbxInfo

@@ -1,0 +1,83 @@
+unit UMenu;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
+  Vcl.StdCtrls, Data.DB, Data.Win.ADODB;
+
+type
+  TFmMenu = class(TForm)
+    BtnCreateNewGame: TButton;
+    BtnLoadGame: TButton;
+    LblMenu: TLabel;
+    ImLogo: TImage;
+    BtnLogOut: TButton;
+    BtnDeleteAccount: TButton;
+    ADOPlayer: TADOTable;
+    ADOSaveState: TADOTable;
+    procedure BtnLogOutClick(Sender: TObject);
+    procedure BtnCreateNewGameClick(Sender: TObject);
+    procedure BtnLoadGameClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure BtnDeleteAccountClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FmMenu: TFmMenu;
+
+implementation
+
+{$R *.dfm}
+
+uses ULogin, UCreateNewGame, ULoadGame;
+
+procedure TFmMenu.BtnCreateNewGameClick(Sender: TObject);
+begin
+FmMenu.Close;
+FmCreateNewGame.Show;
+end;
+
+procedure TFmMenu.BtnDeleteAccountClick(Sender: TObject);
+begin
+if (true) then showmessage('') //Checks if Account is linked to any savestates
+else
+begin
+
+end;
+end;
+
+procedure TFmMenu.BtnLoadGameClick(Sender: TObject);
+begin
+FmMenu.Close;
+FmLoadGame.Show;
+end;
+
+procedure TFmMenu.BtnLogOutClick(Sender: TObject);
+begin
+FmMenu.Close;
+FmLogin.Show;
+end;
+
+procedure TFmMenu.FormActivate(Sender: TObject);
+begin
+  AdoPlayer.ConnectionString:= ConnStr;
+  AdoPlayer.TableName:='Player';
+  AdoPlayer.Open;
+  AdoSaveState.ConnectionString:= ConnStr;
+  AdoSaveState.TableName:='Faction';
+  AdoSaveState.Open;
+end;
+
+procedure TFmMenu.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+FmLogin.Show;
+end;
+
+end.
